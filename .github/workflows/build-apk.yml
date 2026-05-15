@@ -1,0 +1,47 @@
+name: Build Flutter APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:   # allows manual trigger from GitHub UI
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.0'
+          channel: stable
+
+      - name: Create .env file
+        run: |
+          echo "APP_NAME=Skool" > .env
+          echo "APP_ENV=production" >> .env
+          echo "API_BASE_URL=${{ secrets.API_BASE_URL }}" >> .env
+          echo "CONNECTION_TIMEOUT_MS=15000" >> .env
+          echo "RECEIVE_TIMEOUT_MS=30000" >> .env
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: skool-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 7
