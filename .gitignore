@@ -1,22 +1,88 @@
+# ─── Secrets & Environment ────────────────────────────────────────────────────
 .env
-.env.development
-.env.production
-.env.local
+.env.*
+!.env.example
+
+# ─── Flutter / Dart ───────────────────────────────────────────────────────────
+# Dart tool
 .dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
 .packages
 .pub-cache/
 .pub/
+pubspec.lock
+
+# Build outputs
 build/
-coverage/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Generated files
 lib/generated/
 *.g.dart
 *.freezed.dart
 *.mocks.dart
+
+# Coverage
+coverage/
+*.lcov
+
+# ─── Android ──────────────────────────────────────────────────────────────────
+android/.gradle/
+android/captures/
+android/gradlew
+android/gradlew.bat
+android/local.properties
+android/**/GeneratedPluginRegistrant.java
+android/key.properties
+**/*.keystore
+**/*.jks
+
+# Firebase
 google-services.json
-GoogleService-Info.plist
 android/app/google-services.json
+
+# ─── iOS ──────────────────────────────────────────────────────────────────────
+ios/.symlinks/
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/Flutter/app.flx
+ios/Flutter/app.zip
+ios/Flutter/flutter_assets/
+ios/Flutter/flutter_export_environment.sh
+ios/ServiceDefinitions.json
+ios/Runner/GeneratedPluginRegistrant.*
+
+# Firebase
+GoogleService-Info.plist
 ios/Runner/GoogleService-Info.plist
+
+# CocoaPods
+ios/Pods/
+ios/.symlinks/
+ios/Podfile.lock
+
+# Xcode
+ios/*.xcworkspace
+ios/Runner.xcworkspace/xcshareddata/
+
+# ─── macOS ────────────────────────────────────────────────────────────────────
+macos/Flutter/GeneratedPluginRegistrant.swift
+macos/Flutter/ephemeral/
+
+# ─── Web ──────────────────────────────────────────────────────────────────────
+lib/generated_plugin_registrant.dart
+
+# ─── IDEs ─────────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
 .DS_Store
+Thumbs.db
+
+# ─── Logs ─────────────────────────────────────────────────────────────────────
 *.log

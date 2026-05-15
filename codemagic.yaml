@@ -1,0 +1,39 @@
+workflows:
+  android-release:
+    name: Android Release Build
+    max_build_duration: 30
+    environment:
+      vars:
+        APP_ENV: production
+        CONNECTION_TIMEOUT_MS: "15000"
+        RECEIVE_TIMEOUT_MS: "30000"
+      # API_BASE_URL is injected from Codemagic Environment Variables UI
+
+    scripts:
+      - name: Create .env file
+        script: |
+          cat >> .env <<EOF
+          APP_NAME=Skool
+          APP_ENV=$APP_ENV
+          API_BASE_URL=$API_BASE_URL
+          CONNECTION_TIMEOUT_MS=$CONNECTION_TIMEOUT_MS
+          RECEIVE_TIMEOUT_MS=$RECEIVE_TIMEOUT_MS
+          EOF
+
+      - name: Install Flutter dependencies
+        script: flutter pub get
+
+      - name: Build APK
+        script: |
+          flutter build apk --release
+
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
+
+    publishing:
+      email:
+        recipients:
+          - thegrowthroutes@gmail.com
+        notify:
+          success: true
+          failure: true
