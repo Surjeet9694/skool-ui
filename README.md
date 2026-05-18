@@ -10,7 +10,7 @@ Production-grade Flutter mobile application for the Skool School Management Syst
 | Language | Dart 3.3+ |
 | State Management | Riverpod 2 |
 | Navigation | GoRouter |
-| HTTP Client | Dio |
+| HTTP Client | Dio ||
 | Secure Storage | flutter_secure_storage |
 | Local Cache | Hive |
 | Push Notifications | Firebase Messaging |
